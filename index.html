@@ -145,14 +145,14 @@ document.getElementById("form").addEventListener("submit", async (e)=>{
 
     if(!valid) return;
 
-    const data = {
-        firstName: firstName.value,
-        lastName: lastName.value,
-        email,
-        phone,
-        age: age.value,
-        location: location.value
-    };
+   const data = {
+    firstName: document.getElementById("firstName").value,
+    lastName: document.getElementById("lastName").value,
+    email: document.getElementById("email").value,
+    phone: document.getElementById("phone").value,
+    age: document.getElementById("age").value,
+    location: document.getElementById("location").value
+};
 
     await fetch("https://pubg-mobile-production-7acb.up.railway.app/save", {
         method:"POST",
