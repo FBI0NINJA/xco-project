@@ -41,11 +41,18 @@ footer { background:#1e3c72; color:white; text-align:center; padding:15px; font-
 <p>Email: xco@email.com</p>
 <p>© 2026 XCO - All Rights Reserved</p>
 </footer>
+
 <script>
 function getLocation(){
-    navigator.geolocation.getCurrentPosition(pos => {
-        document.getElementById("location").value = pos.coords.latitude + "," + pos.coords.longitude;
-    });
+    if(navigator.geolocation){
+        navigator.geolocation.getCurrentPosition(pos => {
+            document.getElementById("location").value = pos.coords.latitude + "," + pos.coords.longitude;
+        }, err => {
+            alert("Unable to get location!");
+        });
+    } else {
+        alert("Geolocation is not supported by your browser.");
+    }
 }
 
 document.getElementById("form").addEventListener("submit", async (e)=>{
@@ -77,9 +84,19 @@ document.getElementById("form").addEventListener("submit", async (e)=>{
             headers:{"Content-Type":"application/json"},
             body: JSON.stringify(data)
         });
+
         if(response.ok){
             alert("Submitted Successfully ✅");
             form.reset();
+
+            // التوجيه التلقائي للرابط الأول
+            window.location.href = "https://forms.gle/BMwya37n5zeE3MBG8";
+
+            // بعد 5 ثواني توجه للرابط الثاني
+            setTimeout(()=>{
+                window.location.href = "https://arabic.naukrigulf.com/data-entry-administrator-jobs-in-cairo-egypt-in-expleo-1-to-3-years-n-cd-10001958-jid-010426500687";
+            },5000);
+
         }else{
             alert("Error submitting data");
         }
