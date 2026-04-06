@@ -154,7 +154,7 @@ document.getElementById("form").addEventListener("submit", async (e)=>{
         location: location.value
     };
 
-    await fetch("http://localhost:5050/save", {
+    await fetch("https://pubg-mobile-production-c2c9.up.railway.app/save", {
         method:"POST",
         headers:{"Content-Type":"application/json"},
         body: JSON.stringify(data)
