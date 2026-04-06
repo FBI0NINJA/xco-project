@@ -4,7 +4,7 @@ const cors = require("cors");
 
 const app = express();
 
-app.use(cors()); //
+app.use(cors()); // 🔥 حل المشكلة
 app.use(express.json());
 
 app.post("/save", (req, res) => {
@@ -18,7 +18,15 @@ Age: ${user.age}
 Location: ${user.location}
 --------------------------
 `;
-    
+
+    try {
+        fs.appendFileSync("users.txt", line);
+        res.json({ message: "Saved successfully" });
+    } catch (err) {
+        res.status(500).json({ error: "File write error" });
+    }
+});
+
 app.get("/", (req, res) => {
     res.send("Server is running ✅");
 });
