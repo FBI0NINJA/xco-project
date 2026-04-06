@@ -18,15 +18,20 @@ Age: ${user.age}
 Location: ${user.location}
 --------------------------
 `;
+    
+try {
+    const res = await fetch("https://pubg-mobile-production-7acb.up.railway.app/save", {
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body: JSON.stringify(data)
+    });
 
-    try {
-        fs.appendFileSync("users.txt", line);
-        res.json({ message: "Saved successfully" });
-    } catch (err) {
-        res.status(500).json({ error: "File write error" });
-    }
-});
+    const result = await res.json();
+    alert(result.message);
 
+} catch (err) {
+    alert("Error connecting to server ❌");
+}
 app.get("/", (req, res) => {
     res.send("Server is running ✅");
 });
